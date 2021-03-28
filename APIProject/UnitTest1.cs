@@ -166,7 +166,7 @@ namespace APIProject
         public void PutRequest()
         {
             client = new RestClient(AssessmentUrl);
-            request = new RestRequest("users", Method.DELETE);
+            request = new RestRequest("users", Method.PUT);
             request.AddParameter("Accept", "application/json");
             request.RequestFormat = DataFormat.Json;
 
