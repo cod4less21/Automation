@@ -19,6 +19,7 @@ namespace TestProjectPOM.Pages
         {
             ChromeOptions option = new ChromeOptions();
             option.AddArgument("--start-maximized");
+            option.AddArgument("--headless");
             driver = new ChromeDriver(option);
             driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(10);
         }
