@@ -4,6 +4,7 @@ using TechTalk.SpecFlow;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Threading;
+using System.Linq;
 
 namespace SpecflowAutomationPOM.Steps
 {
@@ -14,8 +15,8 @@ namespace SpecflowAutomationPOM.Steps
         string url = "https://www.google.com/";
         string urlEAPage = "http://eaapp.somee.com/";
         IWebDriver driver;
-        int firstNumber;
-        int secondNumber;
+        //int firstNumber;
+        //int secondNumber;
         int ActualResult;
 
         public GoogleStep(ScenarioContext scenarioContext)
@@ -36,8 +37,10 @@ namespace SpecflowAutomationPOM.Steps
         [When(@"I click (.*) button")]
         public void GivenIClickIAgreeButton(string buttonName)
         {
-            driver.SwitchTo().Frame(0);
-            driver.FindElement(By.Id("introAgreeButton")).Click();
+            //driver.SwitchTo().Frame(0);
+            //driver.FindElement(By.Id("introAgreeButton")).Click();
+            driver.FindElement(By.XPath("//div[@class='KxvlWc']"))
+                .FindElement(By.XPath("//*[text()='I agree']")).Click();
         }
 
         [When(@"I enter '(.*)' in the search box")]
@@ -85,16 +88,15 @@ namespace SpecflowAutomationPOM.Steps
         [Then(@"My result should be (.*)")]
         public void ThenMyResultShouldBe(int expectResult)
         {
-            //Assert.AreEqual(expectResult, ActualResult);
             Assert.AreEqual(expectResult, ActualResult); 
         }
 
         [Given(@"I am on EA eaapp page")]
         public void GivenIAmOnEAEaappPage()
         {
-            //ChromeOptions options = new ChromeOptions();
-            //options.AddArguments("--start-maximized", "--incognito");
-            //driver = new ChromeDriver(options);
+            ChromeOptions options = new ChromeOptions();
+            options.AddArguments("--start-maximized", "--incognito");
+            driver = new ChromeDriver(options);
             driver.Navigate().GoToUrl(urlEAPage);
         }
 
@@ -113,6 +115,10 @@ namespace SpecflowAutomationPOM.Steps
             pass.SendKeys("Admin");
             pass.Submit();
         }
+
+
+
+   
 
         [Then(@"Error message is displayed '(.*)'")]
         public void ThenErrorMessageIsDisplayed(string ErrorMsg)

@@ -33,4 +33,11 @@
     <Folder Include="Hooks\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="RegistrationDetails.resx">
+      <LastGenOutput>RegistrationDetails.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
