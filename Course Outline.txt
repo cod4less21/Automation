@@ -1,0 +1,15 @@
+					Course OutLine
+
+Week1
+
+1. Introduction to automation 
+2. Tools available for automation
+3. What tool we will be using (Visual studio) (C# is the language)
+4. Setting up a project
+5. Locating project path
+6. Deleting a project
+7. Opening an already created project
+8. Understanding controls within visual studio and variouse windows available for our daily use
+9. Create our first project using Console application
+
+Week2.

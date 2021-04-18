@@ -9,7 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIProject", "APIProject\AP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpecflowAutomationPOM", "SpecflowAutomationPOM\SpecflowAutomationPOM.csproj", "{962DDB8A-9ED2-4B84-B258-412A1B6FD2B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{F3066C3F-F53B-46B1-B57D-BC99E6F3D9C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject", "TestProject\TestProject.csproj", "{F3066C3F-F53B-46B1-B57D-BC99E6F3D9C8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestSpecflowE2E", "TestSpecflowE2E\TestSpecflowE2E.csproj", "{202AA238-D89B-487F-AEDE-33AE27C2EEBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSpecflowE2EPOM", "TestSpecflowE2EPOM\TestSpecflowE2EPOM.csproj", "{9E9FEB0C-964F-4965-9D8C-1A59D0C2CE6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{F3066C3F-F53B-46B1-B57D-BC99E6F3D9C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3066C3F-F53B-46B1-B57D-BC99E6F3D9C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3066C3F-F53B-46B1-B57D-BC99E6F3D9C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{202AA238-D89B-487F-AEDE-33AE27C2EEBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{202AA238-D89B-487F-AEDE-33AE27C2EEBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{202AA238-D89B-487F-AEDE-33AE27C2EEBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{202AA238-D89B-487F-AEDE-33AE27C2EEBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E9FEB0C-964F-4965-9D8C-1A59D0C2CE6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E9FEB0C-964F-4965-9D8C-1A59D0C2CE6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E9FEB0C-964F-4965-9D8C-1A59D0C2CE6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E9FEB0C-964F-4965-9D8C-1A59D0C2CE6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

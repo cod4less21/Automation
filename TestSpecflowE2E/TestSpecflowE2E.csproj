@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
-    <PackageReference Include="Selenium.Support" Version="3.141.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="90.0.4430.2400" />
     <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.7.141" />
@@ -17,7 +16,7 @@
 
     
     <PackageReference Include="SpecFlow.NUnit" Version="3.7.38" />
-    <PackageReference Include="nunit" Version="3.13.1" />
+    <PackageReference Include="nunit" Version="3.13.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
     
 
@@ -30,14 +29,6 @@
 
   <ItemGroup>
     <Folder Include="Drivers\" />
-    <Folder Include="Hooks\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="RegistrationDetails.resx">
-      <LastGenOutput>RegistrationDetails.Designer.cs</LastGenOutput>
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

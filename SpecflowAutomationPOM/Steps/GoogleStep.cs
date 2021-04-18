@@ -5,15 +5,17 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Threading;
 using System.Linq;
+using SpecflowAutomationPOM.CustomeMethods;
 
 namespace SpecflowAutomationPOM.Steps
 {
     [Binding]
-    public sealed class GoogleStep
+    public class GoogleStep
     {
         private readonly ScenarioContext _scenarioContext;
         string url = "https://www.google.com/";
         string urlEAPage = "http://eaapp.somee.com/";
+        string BBCUrl = "https://www.bbc.co.uk/";
         IWebDriver driver;
         //int firstNumber;
         //int secondNumber;
@@ -37,8 +39,6 @@ namespace SpecflowAutomationPOM.Steps
         [When(@"I click (.*) button")]
         public void GivenIClickIAgreeButton(string buttonName)
         {
-            //driver.SwitchTo().Frame(0);
-            //driver.FindElement(By.Id("introAgreeButton")).Click();
             driver.FindElement(By.XPath("//div[@class='KxvlWc']"))
                 .FindElement(By.XPath("//*[text()='I agree']")).Click();
         }
@@ -58,7 +58,7 @@ namespace SpecflowAutomationPOM.Steps
             var Actualresult = 
                 driver.FindElement(By.XPath("//span[text()='Automation']")).Text;
             Assert.AreEqual(searchTxt, Actualresult,
-                $"{searchTxt} is not displayed");
+                $"{searchTxt} is not matching actual result");
         }
 
         [Given(@"My firstnumber is (.*)")]
@@ -107,29 +107,37 @@ namespace SpecflowAutomationPOM.Steps
             Login.Click();
         }
 
-        [When(@"I enter UserName and Password")]
-        public void WhenIEnterUserNameAndPassword()
+        [When(@"I enter UserName '(.*)' and Password '(.*)'")]
+        public void WhenIEnterUserNameAndPassword(string UserNameAlias, string PasswordAlias)
         {
-            driver.FindElement(By.Id("UserName")).SendKeys("Admin");
+            driver.FindElement(By.Id("UserName")).SendKeys(UserNameAlias);
             var pass = driver.FindElement(By.Id("Password"));
-            pass.SendKeys("Admin");
+            pass.SendKeys(PasswordAlias);
             pass.Submit();
         }
 
+        [When(@"I enter the following UserName and Password:")]
+        public void WhenIEnterTheFollowingUserNameAndPassword(Table table)
+        {
+            var UserName = table.Rows.ToList();
+            driver.FindElement(By.Id("UserName")).SendKeys(table.Rows[0]["UserName"]);
+            var pass = driver.FindElement(By.Id("Password"));
+            pass.SendKeys(table.Rows[0]["Password"]);
+            pass.Submit();
+        }
 
-
-   
 
         [Then(@"Error message is displayed '(.*)'")]
         public void ThenErrorMessageIsDisplayed(string ErrorMsg)
         {
             var ErrorMessage = 
                 driver.FindElement(By.XPath("//*[text()='Invalid login attempt.']"));
+
             var ErrortxtMessage = ErrorMessage.Text;
-            var IsErrorTextMessageDisplayed = ErrorMessage.Displayed;
             Assert.IsTrue(ErrorMessage.Displayed, $"{ErrorMessage} is not displayed");
             //_scenarioContext["ErrorMsg"] = ErrortxtMessage;
-            _scenarioContext.Add(ErrorMsg, ErrortxtMessage);
+            //_scenarioContext.Add(ErrorMsg, ErrortxtMessage);
+            _scenarioContext.Set(ErrortxtMessage, ErrorMsg);
         }
 
         [Then(@"Error message '(.*)' contain '(.*)'")]
@@ -147,6 +155,49 @@ namespace SpecflowAutomationPOM.Steps
                 driver.Quit();
             }
             driver = null;
+        }
+
+
+        [Given(@"I am on BBC website")]
+        public void GivenIAmOnBBCWebsite()
+        {
+            driver = new ChromeDriver();
+            driver.Manage().Window.Maximize();
+            driver.Navigate().GoToUrl(BBCUrl);
+        }
+
+        [When(@"I click on '(.*)' link")]
+        public void WhenIClickOnLink(string linkAlias)
+        {
+            driver.FindElement(By.XPath($"//ul[@role='list'][2]//li[.='{linkAlias}']")).Click();
+        }
+
+        [Then(@"I can see '(.*)' section at the buttom of the page")]
+        public void ThenICanSeeSectionAtTheButtomOfThePage(string sportAlias)
+        {
+            var SportSection =
+                driver.FindElement(
+                    By.XPath("//a[@data-entityid='sport-slice-heading']//parent::div"));
+
+            ((IJavaScriptExecutor)driver)
+                .ExecuteScript("arguments[0].scrollIntoView(true);", SportSection);
+
+            Assert.Multiple(() =>
+            {
+                Assert.IsTrue(SportSection.Displayed, $"{SportSection} is not displayed");
+                Assert.IsTrue(SportSection.Text.Contains(sportAlias), 
+                    $"{SportSection} is not displayed");
+            });
+        }
+
+        [Then(@"I can see '(.*)' for page")]
+        public void ThenICanSeeForPage(string expectedPageTitle)
+        {
+            var ActualPageTitle = driver.Title;
+            var ActuaUrl = driver.Url;
+
+            Assert.AreEqual(expectedPageTitle, ActualPageTitle, 
+                $"{expectedPageTitle} does not match {ActualPageTitle}");
         }
 
     }
